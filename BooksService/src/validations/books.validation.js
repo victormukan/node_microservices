@@ -13,7 +13,7 @@ const createBook = {
     author: joi.string().required(),
     language: joi.string().required(),
     description: joi.string().required(),
-    publishDate: joi.string().required(),
+    publishDate: joi.date().required(),
     numberOfPages: joi.number().required()
   }
 };

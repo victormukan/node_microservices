@@ -1,1 +1,5 @@
+# ingoring node dependencies
 node_modules/
+
+# ignoring mongo database volume with data
+data/
