@@ -29,6 +29,10 @@
 | /:id      | DELETE      | DELETE      | Deletes author       |
 
 
+## Postman examples
+
+https://www.getpostman.com/collections/85d6abd1e14109c836be
+
 ## To run docker compose: 
 
 Build the images:
