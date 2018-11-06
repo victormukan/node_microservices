@@ -1,57 +1,53 @@
 import status from 'http-status';
 import Author from '../models/authors.model';
 
-const createAuthor = (req, res) => {
-  const author = new Author(req.body);
+const createAuthor = async (req, res) => {
+  try {
+    const author = new Author(req.body);
+    const data = await author.save();
 
-  author.save((err, data) => {
-    if (err) {
-      res.status(status.INTERNAL_SERVER_ERROR).send(err);
-    } else {
-      res.status(status.CREATED).send(`Author successfully created id = ${data._id}`);
-    }
-  });
+    res.status(status.CREATED).send(`Author successfully created id = ${data._id}`);
+  } catch (err) {
+    res.status(status.INTERNAL_SERVER_ERROR).send(err);
+  }
 };
 
-const getAllAuthors = (req, res) => {
-  Author.find({}, (err, authors) => {
-    if (err) {
-      res.status(status.INTERNAL_SERVER_ERROR).send(err);
-    } else {
-      res.status(status.OK).send(authors);
-    }
-  });
+const getAllAuthors = async (req, res) => {
+  try {
+    const authors = await Author.find({});
+    res.send(authors);
+  } catch (err) {
+    res.status(status.INTERNAL_SERVER_ERROR).send(err);
+  }
 };
 
-const getAuthorById = (req, res) => {
-  Author.findById(req.params.id, (err, author) => {
-    if (err) {
-      res.status(status.INTERNAL_SERVER_ERROR).send(err);
-    } else {
-      res.status(status.OK).send(author);
-    }
-  });
+const getAuthorById = async (req, res) => {
+  try {
+    const author = await Author.findById(req.params.id);
+    res.send(author);
+  } catch (err) {
+    res.status(status.INTERNAL_SERVER_ERROR).send(err);
+  }
 };
 
-const updateAuthor = (req, res) => {
-  Author.findByIdAndUpdate(req.params.id, { $set: { ...req.body, updateDate: Date.now() } },
-    (err) => {
-      if (err) {
-        res.status(status.INTERNAL_SERVER_ERROR).send(err);
-      } else {
-        res.status(status.OK).send('Author successfully updated');
-      }
+const updateAuthor = async (req, res) => {
+  try {
+    await Author.findByIdAndUpdate(req.params.id, {
+      $set: { ...req.body, updateDate: Date.now() }
     });
+    res.send('Author successfully updated');
+  } catch (err) {
+    res.status(status.INTERNAL_SERVER_ERROR).send(err);
+  }
 };
 
-const deleteAuthor = (req, res) => {
-  Author.findByIdAndRemove(req.params.id, (err) => {
-    if (err) {
-      res.status(status.INTERNAL_SERVER_ERROR).send(err);
-    } else {
-      res.status(status.OK).send('Author successfully deleted');
-    }
-  });
+const deleteAuthor = async (req, res) => {
+  try {
+    await Author.findByIdAndRemove(req.params.id);
+    res.send('Author successfully deleted');
+  } catch (err) {
+    res.status(status.INTERNAL_SERVER_ERROR).send(err);
+  }
 };
 
 export default {
