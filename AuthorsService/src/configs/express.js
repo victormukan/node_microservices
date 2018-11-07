@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import helmet from 'helmet';
-import validator from 'express-validation';
+import { errors as errorsMiddleware } from 'celebrate';
 
 import authorsRouter from '../routes/authors.route';
 
@@ -16,20 +16,12 @@ app.use(bodyParser.urlencoded({
 app.use(cors());
 app.use(helmet());
 
-app.set('port', process.env.SERVER_PORT);
 
+app.set('port', process.env.SERVER_PORT);
 
 app.use('/', authorsRouter);
 
-
-app.use((err, req, res, next) => {
-  if (err instanceof validator.ValidationError) {
-    res.status(err.status).json(err);
-  } else {
-    next();
-  }
-});
-
+app.use(errorsMiddleware());
 app.listen(app.get('port'), () => {
   console.log('Node app is running on port', app.get('port'));
 });

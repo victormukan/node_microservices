@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import helmet from 'helmet';
-import validator from 'express-validation';
+import { errors as errorsMiddleware } from 'celebrate';
 
 import booksRouter from '../routes/books.route';
 
@@ -22,13 +22,7 @@ app.set('port', process.env.SERVER_PORT);
 app.use('/', booksRouter);
 
 
-app.use((err, req, res, next) => {
-  if (err instanceof validator.ValidationError) {
-    res.status(err.status).json(err);
-  } else {
-    next();
-  }
-});
+app.use(errorsMiddleware());
 
 app.listen(app.get('port'), () => {
   console.log('Node app is running on port', app.get('port'));

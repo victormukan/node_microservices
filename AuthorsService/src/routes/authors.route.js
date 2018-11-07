@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import validator from 'express-validation';
+import { celebrate as validator } from 'celebrate';
 import controller from '../controllers/authors.controller';
 import validations from '../validations/authors.validation';
 

@@ -1,31 +1,31 @@
-import joi from 'joi';
+import { Joi } from 'celebrate';
 
 const validateId = {
   params: {
-    id: joi.string().required()
+    id: Joi.string().required()
   },
 };
 
 const createAuthor = {
   body: {
-    firstName: joi.string().required(),
-    lastName: joi.string().required(),
-    books: joi.array().items(joi.string().required()).required(),
-    dateOfBirth: joi.date().required(),
-    placeOfBirth: joi.string().required()
+    firstName: Joi.string().required(),
+    lastName: Joi.string().required(),
+    books: Joi.array().items(Joi.string().required()).required(),
+    dateOfBirth: Joi.date().required(),
+    placeOfBirth: Joi.string().required()
   }
 };
 
 const updateAuthor = {
   params: {
-    id: joi.string().required()
+    id: Joi.string().required()
   },
   body: {
-    firstName: joi.string(),
-    lastName: joi.string(),
-    books: joi.array().items(joi.string()),
-    dateOfBirth: joi.date(),
-    placeOfBirth: joi.string()
+    firstName: Joi.string(),
+    lastName: Joi.string(),
+    books: Joi.array().items(Joi.string()),
+    dateOfBirth: Joi.date(),
+    placeOfBirth: Joi.string()
   }
 };
 

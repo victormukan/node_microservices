@@ -1,35 +1,35 @@
-import joi from 'joi';
+import { Joi } from 'celebrate';
 
 const validateId = {
   params: {
-    id: joi.string().required()
+    id: Joi.string().required()
   },
 };
 
 const createBook = {
   body: {
-    name: joi.string().required(),
-    genre: joi.string().required(),
-    author: joi.string().required(),
-    language: joi.string().required(),
-    description: joi.string().required(),
-    publishDate: joi.date().required(),
-    numberOfPages: joi.number().required()
+    name: Joi.string().required(),
+    genre: Joi.string().required(),
+    author: Joi.string().required(),
+    language: Joi.string().required(),
+    description: Joi.string().required(),
+    publishDate: Joi.date().required(),
+    numberOfPages: Joi.number().required()
   }
 };
 
 const updateBook = {
   params: {
-    id: joi.string().required()
+    id: Joi.string().required()
   },
   body: {
-    name: joi.string(),
-    genre: joi.string(),
-    author: joi.string(),
-    language: joi.string(),
-    description: joi.string(),
-    publishDate: joi.string(),
-    numberOfPages: joi.number()
+    name: Joi.string(),
+    genre: Joi.string(),
+    author: Joi.string(),
+    language: Joi.string(),
+    description: Joi.string(),
+    publishDate: Joi.string(),
+    numberOfPages: Joi.number()
   }
 };
 
