@@ -3,3 +3,5 @@ node_modules/
 
 # ignoring mongo database volume with data
 data/
+
+package-lock.json
