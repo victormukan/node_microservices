@@ -1,0 +1,10 @@
+# ingoring node dependencies
+node_modules/
+
+# ignoring build files
+build/
+
+# ignoring mongo database volume with data
+data/
+
+package-lock.json
