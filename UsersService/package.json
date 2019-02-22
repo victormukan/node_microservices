@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node src/index.ts",
-    "dev": "./node_modules/nodemon/bin/nodemon.js",
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,8 +13,27 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/koa": "^2.0.48",
+    "@types/koa-bodyparser": "^4.2.2",
+    "@types/koa-compress": "^2.0.8",
+    "@types/koa-cors": "0.0.0",
+    "@types/koa-helmet": "^3.1.2",
+    "@types/koa-json": "^2.0.18",
+    "@types/koa-logger": "^3.1.1",
+    "@types/koa-router": "^7.0.39",
+    "@types/node": "^11.9.4",
     "koa": "^2.7.0",
-    "koa-router": "^7.4.0"
+    "koa-bodyparser": "^4.2.1",
+    "koa-compress": "^3.0.0",
+    "koa-convert": "^1.2.0",
+    "koa-cors": "0.0.16",
+    "koa-helmet": "^4.0.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.0",
+    "koa-router": "^7.4.0",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.3.3333",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
