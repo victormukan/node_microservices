@@ -1,7 +1,6 @@
 version: "3"
 services:
-  proxy:
-    container_name: node_proxy
+  node_proxy:
     build: ./Proxy
     ports:
       - "4000:8080"
@@ -10,11 +9,10 @@ services:
       - BOOKS_SERVICE=http://books:8080
       - AUTHORS_SERVICE=http://authors:8080
     links:
-      - "books"
-      - "authors"
+      - "books_service"
+      - "authors_service"
 
-  books:
-    container_name: books_service
+  books_service:
     build: ./BooksService
     ports:
       - "4001:8080"
@@ -25,15 +23,13 @@ services:
       - "books_mongo"
 
   books_mongo:
-    container_name: books_mongo
     image: mongo
     volumes:
       - ./BooksService/data:/data/db
     ports:
       - "4002:27017"
 
-  authors:
-    container_name: authors_service
+  authors_service:
     build: ./AuthorsService
     ports:
       - "4003:8080"
@@ -44,7 +40,6 @@ services:
       - "authors_mongo"
 
   authors_mongo:
-    container_name: authors_mongo
     image: mongo
     volumes:
       - ./AuthorsService/data:/data/db
