@@ -1,5 +1,4 @@
 import * as Koa from 'koa';
-import * as Router from 'koa-router';
 import * as compress from 'koa-compress';
 import * as koaLogger from 'koa-logger';
 import * as convert from 'koa-convert';
@@ -8,12 +7,10 @@ import * as bodyParser from 'koa-bodyparser';
 import * as helmet from 'koa-helmet';
 import * as cors from 'koa-cors';
 
-const app = new Koa();
-const router = new Router();
+import router from './config/router';
 
-router.get('/', async (ctx) => {
-    ctx.body = 'Hello World!';
-});
+const app = new Koa();
+
 
 app.use(helmet());
 app.use(convert(cors({
