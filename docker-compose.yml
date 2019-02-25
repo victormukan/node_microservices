@@ -45,3 +45,10 @@ services:
       - ./AuthorsService/data:/data/db
     ports:
       - "4004:27017"
+
+  mydb:
+    image: postgres
+    volumes:
+      - UsersService/data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
