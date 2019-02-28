@@ -1,16 +1,15 @@
 import * as Router from 'koa-router';
+import * as validate from 'koa-joi-validate';
+import UsersController from '../controllers/usersController';
+import UsersValidation from '../validations/usersValidation';
 
 const router = new Router();
 
-router.get('/:name', async ctx => {
-    ctx.body = ctx.params;
-});
+router.get('/', UsersController.getAllUsers);
 
-router.post('/', async ctx => {
-    console.log(ctx.header.authorization);
-    ctx.body = ctx.request.body;
-    ctx.status = 201;
-});
+router.get('/:id', validate(UsersValidation.getById), UsersController.getUserById);
+
+router.post('/', validate(UsersValidation.createUser), UsersController.createUser);
 
 router.put('/', async ctx => {
 

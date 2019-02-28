@@ -1,6 +1,6 @@
 import * as Sequelize from 'sequelize';
 
-const sequelize = new Sequelize('library', 'postgres', 'root', {
+const sequelize = new Sequelize('db', 'postgres', 'root', {
     host: 'localhost',
     port: 5000,
     dialect: 'postgres',
@@ -22,3 +22,5 @@ sequelize
     .catch(err => {
         console.error('Unable to connect to the database:', err);
     });
+
+export default sequelize;
