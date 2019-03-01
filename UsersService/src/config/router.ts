@@ -11,8 +11,6 @@ router.get('/:id', validate(UsersValidation.getById), UsersController.getUserByI
 
 router.post('/', validate(UsersValidation.createUser), UsersController.createUser);
 
-router.put('/', async ctx => {
-
-})
+router.put('/:id', validate(UsersValidation.updateUser), UsersController.updateUser);
 
 export default router;

@@ -14,4 +14,15 @@ export default class UsersValidation {
             dob: joi.date().required()
         }
     }
+
+    public static updateUser = {
+        params: {
+            id: joi.number().required()
+        },
+        body: {
+            name: joi.string().max(200),
+            surname: joi.string().max(200),
+            dob: joi.date()
+        }
+    }
 }

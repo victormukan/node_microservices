@@ -1,19 +1,18 @@
-import sequelize from '../config/sequelize';
-import * as Sequelize from 'sequelize';
+import * as Koa from 'koa';
 import userModel from '../models/usersModel';
 
 export default class UsersController {
-    public static async getAllUsers(ctx) {
+    public static async getAllUsers(ctx: Koa.Context) {
         ctx.body = await userModel.findAll({ attributes: ['id', 'name', 'surname', 'dob'] });
     }
 
-    public static async getUserById(ctx) {
+    public static async getUserById(ctx: Koa.Context) {
         ctx.body = await userModel.findAll({ 
             where: { id: ctx.params.id },
             attributes: ['id', 'name', 'surname', 'dob'] });
     }
 
-    public static async createUser(ctx) {
+    public static async createUser(ctx: Koa.Context) {
         const { name, surname, dob } = ctx.request.body;
 
         ctx.body = await userModel.create(
@@ -22,5 +21,9 @@ export default class UsersController {
         );
 
         ctx.status = 201;
+    }
+
+    public static async updateUser(ctx: Koa.Context) {
+        ctx.body = await userModel.update(ctx.request.body, { where: { id: ctx.params.id }});
     } 
 }
