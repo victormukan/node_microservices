@@ -24,6 +24,9 @@ export default class UsersController {
     }
 
     public static async updateUser(ctx: Koa.Context) {
-        ctx.body = await userModel.update(ctx.request.body, { where: { id: ctx.params.id }});
+        ctx.body = await userModel.update(ctx.request.body, {
+            returning: true,
+            where: { id: ctx.params.id }
+        });
     } 
 }
