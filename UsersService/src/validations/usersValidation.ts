@@ -5,7 +5,7 @@ export default class UsersValidation {
         params: {
             id: joi.number().required()
         }
-    }
+    };
 
     public static createUser = {
         body: {
@@ -13,7 +13,7 @@ export default class UsersValidation {
             surname: joi.string().max(200).required(),
             dob: joi.date().required()
         }
-    }
+    };
 
     public static updateUser = {
         params: {
@@ -24,5 +24,5 @@ export default class UsersValidation {
             surname: joi.string().max(200),
             dob: joi.date()
         }
-    }
+    };
 }

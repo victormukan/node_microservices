@@ -1,5 +1,5 @@
-import * as Router from 'koa-router';
 import * as validate from 'koa-joi-validate';
+import * as Router from 'koa-router';
 import UsersController from '../controllers/usersController';
 import UsersValidation from '../validations/usersValidation';
 
