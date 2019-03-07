@@ -1,5 +1,6 @@
 import * as Sequelize from 'sequelize';
 import sequelize from '../config/sequelize';
+import Tasks from './tasksModel';
 
 const User = sequelize.define('users', {
     id: {
@@ -11,5 +12,9 @@ const User = sequelize.define('users', {
     surname: { type: Sequelize.STRING },
     dob: { type: Sequelize.DATE }
 });
+
+User.hasMany(Tasks);
+
+sequelize.sync();
 
 export default User;

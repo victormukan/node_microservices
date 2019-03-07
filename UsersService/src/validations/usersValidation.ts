@@ -25,4 +25,10 @@ export default class UsersValidation {
             dob: joi.date()
         }
     };
+    public static addTask = {
+        params: {
+            userId: joi.number().required(),
+            taskId: joi.number().required()
+        }
+    };
 }

@@ -6,15 +6,11 @@ import * as cors from 'koa-cors';
 import * as helmet from 'koa-helmet';
 import * as json from 'koa-json';
 import * as koaLogger from 'koa-logger';
-import * as Router from 'koa-router';
 
 import router from './config/router';
 import './config/sequelize';
 
 const app = new Koa();
-const router = new Router();
-
-router.use('/user', userRouter.routes());
 
 app.use(helmet());
 app.use(convert(cors({

@@ -1,9 +1,13 @@
 import * as Koa from 'koa';
+import tasksModel from '../models/tasksModel';
 import usersModel from '../models/usersModel';
 
 export default class UsersController {
     public static async getAllUsers(ctx: Koa.Context) {
-        ctx.body = await usersModel.findAll({ attributes: ['id', 'name', 'surname', 'dob'] });
+        ctx.body = await usersModel.findAll({
+            attributes: ['id', 'name', 'surname', 'dob'],
+            order: [['name', 'desc'], ['id', 'desc']]
+        });
     }
 
     public static async getUserById(ctx: Koa.Context) {
@@ -39,5 +43,16 @@ export default class UsersController {
         ctx.body = user;
         // user.save();
         console.log(user);
+    }
+
+    public static async addTask(ctx: Koa.Context) {
+        const task = await tasksModel.findByPk(ctx.params.taskId);
+        const user: any = await usersModel.findByPk(ctx.params.userId);
+
+        console.log(user);
+
+        ctx.body = user.setTask(task);
+        console.log(task);
+
     }
 }
