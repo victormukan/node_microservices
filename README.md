@@ -63,7 +63,7 @@ $ docker-compose build
 Run the containers:
 
 ```sh
-$ docker-compose up
+$ docker-compose up --build
 ```
 
 Run the containers in detached mode:
